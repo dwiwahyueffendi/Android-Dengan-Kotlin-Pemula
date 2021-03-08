@@ -17,10 +17,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         //btnIntent = findViewById(R.id.button_intent)
 
         val btnIntent = findViewById<Button>(R.id.button_intent)
-        val btnIntentData = findViewById<Button>(R.id.button_intent_data)
+        val btnIntentData2 = findViewById<Button>(R.id.button_intent_data2)
+        val btnIntentMoveObject = findViewById<Button>(R.id.button_move_object)
 
         btnIntent.setOnClickListener(this)
-        btnIntentData.setOnClickListener(this)
+        btnIntentData2.setOnClickListener(this)
+        btnIntentMoveObject.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -29,10 +31,21 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 val intentBiasa = Intent(this@MainActivity, IntentBiasaActivity::class.java)
                 startActivity(intentBiasa)
             }
-            R.id.button_intent_data -> kotlin.run {
+            R.id.button_intent_data2 -> run {
                 val intentData = Intent(this@MainActivity, IntentDataActivity::class.java)
                 intentData.putExtra(IntentDataActivity.EXTRA_TEXT, "Hai Guyss")
                 startActivity(intentData)
+            }
+            R.id.button_move_object -> run{
+                val mobil = Mobil(
+                    "Toyota Avanza",
+                    2012,
+                    "L 1200 XL"
+                )
+
+                val intentObject = Intent(this@MainActivity, IntentObjectActivity::class.java)
+                intentObject.putExtra(IntentObjectActivity.EXTRA_MOBIL, mobil)
+                startActivity(intentObject)
             }
         }
     }
