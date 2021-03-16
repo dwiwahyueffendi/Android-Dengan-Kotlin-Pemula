@@ -2,12 +2,14 @@ package com.example.pindahactivitydenganintent
 
 import android.os.Parcel
 import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Mobil(
     val merk: String?,
     val tahun: Int,
     val plat: String?
-): Parcelable {
+): Parcelable /*{
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readInt(),
@@ -34,4 +36,4 @@ data class Mobil(
             return arrayOfNulls(size)
         }
     }
-}
+}*/

@@ -1,6 +1,7 @@
 package com.example.pindahactivitydenganintent
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -19,10 +20,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val btnIntent = findViewById<Button>(R.id.button_intent)
         val btnIntentData2 = findViewById<Button>(R.id.button_intent_data2)
         val btnIntentMoveObject = findViewById<Button>(R.id.button_move_object)
+        val btnIntentImplicit = findViewById<Button>(R.id.btn_implicit)
 
         btnIntent.setOnClickListener(this)
         btnIntentData2.setOnClickListener(this)
         btnIntentMoveObject.setOnClickListener(this)
+        btnIntentImplicit.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -46,6 +49,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 val intentObject = Intent(this@MainActivity, IntentObjectActivity::class.java)
                 intentObject.putExtra(IntentObjectActivity.EXTRA_MOBIL, mobil)
                 startActivity(intentObject)
+            }
+            R.id.btn_implicit -> kotlin.run {
+                val telp = "081515427617"
+                val intentImplicit = Intent(Intent.ACTION_VIEW, Uri.parse("tel:$telp") )
+                startActivity(intentImplicit)
             }
         }
     }
