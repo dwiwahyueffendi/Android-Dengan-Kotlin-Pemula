@@ -7,11 +7,19 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_superhero.view.*
 
 class SuperHeroAdapter (private val list: ArrayList<SuperHero>): RecyclerView.Adapter<SuperHeroAdapter.SuperHeroViewHolder>(){
+
+    private var onItemClickCallBack: onItemClickCallback? = null
+    fun setOnItemClickCallback(onItemClickCallback: onItemClickCallback){
+        this.onItemClickCallBack = onItemClickCallback
+    }
+
     inner class SuperHeroViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         fun bind(superHero: SuperHero){
             with(itemView){
                 tv_name.text = superHero.name
                 tv_desc.text = superHero.desc
+
+                itemView.setOnClickListener{ onItemClickCallBack?.onItemClicked(superHero)}
             }
         }
     }
@@ -25,5 +33,9 @@ class SuperHeroAdapter (private val list: ArrayList<SuperHero>): RecyclerView.Ad
 
     override fun onBindViewHolder(holder: SuperHeroViewHolder, position: Int) {
         holder.bind(list[position])
+    }
+
+    interface onItemClickCallback{
+        fun onItemClicked(data: SuperHero)
     }
 }
